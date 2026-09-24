@@ -45,7 +45,7 @@ Star.prototype.draw = function() {
     c.beginPath()
     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
     c.fillStyle = this.color
-    c.shadowColor = '#E3EAEF'
+    c.shadowColor = '#FFEAF0'
     c.shadowBlur = 20
     c.fill()
     c.closePath()
@@ -99,8 +99,8 @@ MiniStar.prototype.draw = function() {
     c.save()
     c.beginPath()
     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-    c.fillStyle = `rgba(227,234, 239, ${this.opacity})`
-    c.shadowColor = '#E3EAEF'
+    c.fillStyle = `rgba(255,234, 240, ${this.opacity})`
+    c.shadowColor = '#FFEAF0'
     c.shadowBlur = 20
     c.fill()
     c.closePath()
@@ -139,8 +139,8 @@ function creatMountainRange(mountainAmount, height, color){
 
 // Implementation
 const backgroundGradient = c.createLinearGradient(0, 0, canvas.width, canvas.height)
-backgroundGradient.addColorStop(0, '#171e26')
-backgroundGradient.addColorStop(1, '#3f586b')
+backgroundGradient.addColorStop(0, '#F08A9A')
+backgroundGradient.addColorStop(1, '#D9577A')
 
 let stars
 let miniStars
@@ -149,6 +149,7 @@ let ticker = 0
 let randomSpawnRate = 75
 const groundHeight = 0.09 * canvas.height
 let inf = 1e9
+
 function init() {
     stars = []
     miniStars = []
@@ -172,11 +173,13 @@ function animate() {
         backgroundStar.draw()
     })
 
-    if(flag) creatMountainRange(1, canvas.height * 0.7, '#384551')
-    if(flag) creatMountainRange(2, canvas.height * 0.6, '#2B3843')
-    if(flag) creatMountainRange(3, canvas.height * 0.4, '#26333E')
-    c.fillStyle = '#182028'
+    if(flag) creatMountainRange(1, canvas.height * 0.7, '#C94F70')
+    if(flag) creatMountainRange(2, canvas.height * 0.6, '#A8325A')
+    if(flag) creatMountainRange(3, canvas.height * 0.4, '#7A1644')
+
+    c.fillStyle = '#4A0D2B'
     c.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight)
+
     stars.forEach((star, index) => {
         star.update();
         if(star.radius == 0){
@@ -195,10 +198,11 @@ function animate() {
     if(ticker >= inf){
         ticker = 0
     }
+
     if(ticker % randomSpawnRate == 0){
         const radius = 9
         const x = Math.max(radius, Math.random() * canvas.width - radius)
-        stars.push(new Star(x, -100, 9, '#E3EAEF'))
+        stars.push(new Star(x, -100, 9, '#FFEAF0'))
         randomSpawnRate = Math.floor(Math.random() * (200 - 125 + 1) + 125)
     }
 
